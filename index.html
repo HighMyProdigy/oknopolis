@@ -1,906 +1,382 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
-<title>Купить москитные сетки в Астрахани | Окнополис</title>
-<meta name="description" content="Москитные сетки в Астрахани от 1000 руб/м². Собственное производство, установка за 1 день, гарантия до 3 лет.">
-<!-- Vue 3 CDN -->
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-:root {
---color-primary: #2e7d32;
---color-primary-dark: #1b5e20;
---color-secondary: #ff9800;
---color-text: #333;
---color-text-light: #666;
---color-bg: #fff;
---color-bg-light: #f5f5f5;
---color-bg-dark: #263238;
---color-border: #e0e0e0;
---color-error: #d32f2f;
---font-family: 'Montserrat', sans-serif;
---font-size-base: 16px;
---font-size-sm: 14px;
---font-size-lg: 18px;
---font-size-xl: 24px;
---font-size-xxl: 32px;
---spacing-xs: 4px;
---spacing-sm: 8px;
---spacing-md: 16px;
---spacing-lg: 24px;
---spacing-xl: 32px;
---spacing-xxl: 48px;
---border-radius: 4px;
---border-radius-lg: 8px;
---box-shadow: 0 2px 8px rgba(0,0,0,0.1);
---box-shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
---transition: all 0.3s ease;
---touch-target: 44px;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: var(--font-family); font-size: var(--font-size-base); color: var(--color-text); line-height: 1.5; background: var(--color-bg); overflow-x: hidden; }
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-md); }
-.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; min-height: var(--touch-target); background: var(--color-primary); color: white; border: none; border-radius: var(--border-radius); font-weight: 500; cursor: pointer; transition: var(--transition); text-decoration: none; gap: var(--spacing-sm); font-size: var(--font-size-base); touch-action: manipulation; }
-.btn:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--box-shadow-hover); }
-.btn:active { transform: translateY(0); }
-.btn-secondary { background: var(--color-secondary); }
-.btn-secondary:hover { background: #f57c00; }
-.btn-outline { background: transparent; border: 2px solid var(--color-primary); color: var(--color-primary); }
-.btn-outline:hover { background: var(--color-primary); color: white; }
-.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-.section { padding: var(--spacing-xxl) 0; }
-.section-title { font-size: var(--font-size-xxl); font-weight: 700; margin-bottom: var(--spacing-lg); text-align: center; color: var(--color-text); line-height: 1.2; }
-.section-subtitle { text-align: center; color: var(--color-text-light); margin-bottom: var(--spacing-xl); max-width: 700px; margin-left: auto; margin-right: auto; }
-/* Header */
-.header { background: var(--color-bg); box-shadow: var(--box-shadow); position: sticky; top: 0; z-index: 100; }
-.header-top { display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--color-border); font-size: var(--font-size-sm); flex-wrap: wrap; gap: var(--spacing-sm); }
-.header-contacts { display: flex; gap: var(--spacing-md); align-items: center; flex-wrap: wrap; }
-.header-phone { font-weight: 700; color: var(--color-primary); text-decoration: none; font-size: var(--font-size-lg); white-space: nowrap; min-height: var(--touch-target); display: inline-flex; align-items: center; }
-.header-messengers { display: flex; gap: var(--spacing-xs); }
-.messenger-btn { width: 32px; height: 32px; min-width: 32px; min-height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--color-primary); color: white; text-decoration: none; font-size: 14px; transition: var(--transition); font-weight: bold; touch-action: manipulation; }
-.messenger-btn:hover { transform: scale(1.1); }
-.header-nav { display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-md) 0; flex-wrap: wrap; gap: var(--spacing-sm); }
-.logo { font-size: var(--font-size-xl); font-weight: 700; color: var(--color-primary); text-decoration: none; white-space: nowrap; }
-.nav-menu { display: flex; gap: var(--spacing-lg); list-style: none; flex-wrap: wrap; }
-.nav-link { color: var(--color-text); text-decoration: none; font-weight: 500; transition: var(--transition); padding: var(--spacing-xs) var(--spacing-sm); min-height: var(--touch-target); display: inline-flex; align-items: center; }
-.nav-link:hover, .nav-link.active { color: var(--color-primary); }
-.mobile-toggle { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--color-text); min-width: var(--touch-target); min-height: var(--touch-target); padding: var(--spacing-sm); touch-action: manipulation; }
-.header-info { display: flex; gap: var(--spacing-md); font-size: var(--font-size-sm); color: var(--color-text-light); flex-wrap: wrap; }
-/* Hero */
-.hero { background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); color: white; padding: var(--spacing-xxl) 0; text-align: center; }
-.hero-title { font-size: clamp(1.75rem, 5vw, 2.5rem); font-weight: 700; margin-bottom: var(--spacing-md); line-height: 1.2; }
-.hero-subtitle { font-size: clamp(1rem, 2.5vw, var(--font-size-lg)); margin-bottom: var(--spacing-xl); opacity: 0.95; }
-.promo-badge { display: inline-block; background: var(--color-secondary); color: white; padding: var(--spacing-sm) var(--spacing-lg); border-radius: var(--border-radius-lg); font-weight: 700; margin-bottom: var(--spacing-lg); animation: pulse 2s infinite; }
-.promo-sub { font-size: 0.8em; font-weight: 400; display: block; margin-top: 4px; }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-.hero-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--spacing-md); margin: var(--spacing-xl) 0; }
-.feature-item { background: rgba(255,255,255,0.1); padding: var(--spacing-md); border-radius: var(--border-radius); }
-.feature-icon { font-size: 1.5rem; margin-bottom: var(--spacing-xs); }
-/* Info Bar */
-.info-bar { background: var(--color-bg-light); padding: var(--spacing-lg) 0; border-bottom: 1px solid var(--color-border); }
-.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); }
-.info-card { display: flex; align-items: flex-start; gap: var(--spacing-md); }
-.info-icon { font-size: 1.5rem; color: var(--color-primary); min-width: 32px; flex-shrink: 0; }
-/* Calculator */
-.calculator { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg); padding: var(--spacing-lg); box-shadow: var(--box-shadow); }
-.calculator-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-lg); }
-.form-group { display: flex; flex-direction: column; gap: var(--spacing-xs); }
-.form-group label { font-weight: 500; font-size: var(--font-size-sm); color: var(--color-text-light); }
-.form-group select, .form-group input { padding: var(--spacing-sm); min-height: var(--touch-target); border: 1px solid var(--color-border); border-radius: var(--border-radius); font-size: var(--font-size-base); transition: var(--transition); width: 100%; }
-.form-group select:focus, .form-group input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1); }
-.form-group input[type="number"] { -moz-appearance: textfield; }
-.form-group input[type="number"]::-webkit-outer-spin-button,
-.form-group input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.radio-group { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); }
-.radio-option { display: flex; align-items: center; gap: var(--spacing-xs); padding: var(--spacing-sm) var(--spacing-md); min-height: var(--touch-target); border: 1px solid var(--color-border); border-radius: var(--border-radius); cursor: pointer; transition: var(--transition); font-size: var(--font-size-sm); touch-action: manipulation; }
-.radio-option:hover, .radio-option.active { border-color: var(--color-primary); background: rgba(46, 125, 50, 0.05); }
-.radio-option input { margin: 0; min-width: 18px; min-height: 18px; }
-.calculator-total { display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-lg); background: var(--color-bg-light); border-radius: var(--border-radius); margin-bottom: var(--spacing-md); flex-wrap: wrap; gap: var(--spacing-sm); }
-.total-price { font-size: var(--font-size-xl); font-weight: 700; color: var(--color-primary); }
-.cart-summary { background: var(--color-bg-light); padding: var(--spacing-md); border-radius: var(--border-radius); margin-bottom: var(--spacing-md); }
-.cart-item { display: flex; justify-content: space-between; padding: var(--spacing-xs) 0; font-size: var(--font-size-sm); flex-wrap: wrap; gap: var(--spacing-xs); }
-/* Cards */
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg); }
-.card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg); padding: var(--spacing-lg); transition: var(--transition); display: flex; flex-direction: column; }
-.card:hover { box-shadow: var(--box-shadow-hover); transform: translateY(-4px); }
-.card-icon { font-size: 2rem; color: var(--color-primary); margin-bottom: var(--spacing-md); text-align: center; }
-.card-img { width: 100%; max-width: 120px; height: 80px; object-fit: contain; margin-bottom: var(--spacing-md); display: block; margin-left: auto; margin-right: auto; }
-.card-title { font-size: var(--font-size-lg); font-weight: 700; margin-bottom: var(--spacing-sm); text-align: center; }
-.card-price { font-size: var(--font-size-xl); font-weight: 700; color: var(--color-primary); margin: var(--spacing-sm) 0; text-align: center; }
-.card-description { color: var(--color-text-light); margin-bottom: var(--spacing-md); font-size: var(--font-size-sm); flex-grow: 1; }
-.card-actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; }
-.card-actions .btn { flex: 1; min-width: 120px; }
-/* Pricing Table */
-.table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 calc(-1 * var(--spacing-md)); padding: 0 var(--spacing-md); }
-.pricing-table { width: 100%; border-collapse: collapse; background: var(--color-bg); box-shadow: var(--box-shadow); border-radius: var(--border-radius-lg); overflow: hidden; min-width: 500px; }
-.pricing-table th, .pricing-table td { padding: var(--spacing-md); text-align: left; border-bottom: 1px solid var(--color-border); white-space: nowrap; }
-.pricing-table th { background: var(--color-primary); color: white; font-weight: 500; position: sticky; top: 0; }
-.pricing-table tr:hover { background: var(--color-bg-light); }
-.pricing-table td:last-child { font-weight: 700; color: var(--color-primary); }
-/* Reviews */
-.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); }
-.review-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg); padding: var(--spacing-lg); }
-.review-header { display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
-.review-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--color-primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
-.review-author { font-weight: 500; }
-.review-source { font-size: var(--font-size-sm); color: var(--color-text-light); }
-.review-text { color: var(--color-text-light); line-height: 1.6; }
-.review-rating { color: var(--color-secondary); margin-bottom: var(--spacing-sm); letter-spacing: 2px; }
-/* FAQ */
-.faq-item { border: 1px solid var(--color-border); border-radius: var(--border-radius); margin-bottom: var(--spacing-sm); overflow: hidden; }
-.faq-question { width: 100%; padding: var(--spacing-md); min-height: var(--touch-target); background: var(--color-bg); border: none; text-align: left; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); font-size: var(--font-size-base); touch-action: manipulation; }
-.faq-question:hover { background: var(--color-bg-light); }
-.faq-question.active { background: var(--color-primary); color: white; }
-.faq-toggle { font-size: 1.2rem; transition: transform 0.3s ease; font-weight: 300; flex-shrink: 0; margin-left: var(--spacing-sm); }
-.faq-toggle.open { transform: rotate(45deg); }
-.faq-answer { padding: 0 var(--spacing-md); max-height: 0; overflow: hidden; transition: all 0.3s ease; background: var(--color-bg-light); color: var(--color-text-light); }
-.faq-answer.open { padding: var(--spacing-md); max-height: 500px; }
-/* Contact Form */
-.contact-form { background: var(--color-primary); color: white; padding: var(--spacing-xxl) 0; text-align: center; }
-.contact-form .section-title { color: white; }
-.contact-form .section-subtitle { color: rgba(255,255,255,0.9); }
-.form-inline { display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; max-width: 500px; margin: 0 auto; }
-.form-inline input { flex: 1; min-width: 200px; padding: var(--spacing-md); min-height: var(--touch-target); border: none; border-radius: var(--border-radius); font-size: var(--font-size-base); }
-.form-inline .btn { padding: var(--spacing-md) var(--spacing-xl); white-space: nowrap; min-height: var(--touch-target); }
-.form-note { font-size: var(--font-size-sm); opacity: 0.8; margin-top: var(--spacing-sm); }
-/* Footer */
-.footer { background: var(--color-bg-dark); color: white; padding: var(--spacing-xl) 0; }
-.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--spacing-lg); }
-.footer-column h4 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-md); color: var(--color-secondary); }
-.footer-column ul { list-style: none; }
-.footer-column li { margin-bottom: var(--spacing-sm); }
-.footer-column a { color: rgba(255,255,255,0.8); text-decoration: none; transition: var(--transition); min-height: var(--touch-target); display: inline-flex; align-items: center; }
-.footer-column a:hover { color: white; }
-.footer-bottom { text-align: center; padding-top: var(--spacing-lg); margin-top: var(--spacing-lg); border-top: 1px solid rgba(255,255,255,0.1); font-size: var(--font-size-sm); opacity: 0.8; }
-/* Modal */
-.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: var(--spacing-md); animation: fadeIn 0.2s ease; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.modal { background: var(--color-bg); border-radius: var(--border-radius-lg); padding: var(--spacing-xl); max-width: 400px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: var(--box-shadow-hover); animation: slideUp 0.3s ease; }
-@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg); }
-.modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-light); line-height: 1; min-width: var(--touch-target); min-height: var(--touch-target); display: flex; align-items: center; justify-content: center; touch-action: manipulation; }
-.modal-title { font-size: var(--font-size-lg); font-weight: 700; }
-.modal-form .form-group { margin-bottom: var(--spacing-md); }
-.modal-form textarea { width: 100%; padding: var(--spacing-sm); min-height: 80px; border: 1px solid var(--color-border); border-radius: var(--border-radius); font-family: inherit; font-size: var(--font-size-base); resize: vertical; }
-.modal-form .btn { width: 100%; }
-/* Utilities */
-.text-center { text-align: center; }
-.mt-1 { margin-top: var(--spacing-sm); }
-.mt-2 { margin-top: var(--spacing-md); }
-.mt-3 { margin-top: var(--spacing-lg); }
-.mb-1 { margin-bottom: var(--spacing-sm); }
-.mb-2 { margin-bottom: var(--spacing-md); }
-.mb-3 { margin-bottom: var(--spacing-lg); }
-.hidden { display: none !important; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-
-/* ========== Production Photos ========= */
-.production-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); }
-.production-photo { aspect-ratio: 4/3; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: var(--box-shadow); transition: var(--transition); position: relative; }
-.production-photo:hover { transform: translateY(-4px); box-shadow: var(--box-shadow-hover); }
-.production-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.production-photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: var(--spacing-sm); font-size: var(--font-size-sm); font-weight: 500; }
-
-/* ========== АДАПТИВ ========= */
-/* Планшеты */
-@media (max-width: 1024px) {
-:root {
---spacing-xxl: 40px;
---spacing-xl: 28px;
-}
-.container { padding: 0 var(--spacing-lg); }
-.section-title { font-size: var(--font-size-xl); }
-.cards-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-}
-/* Мобильные: 768px */
-@media (max-width: 768px) {
-:root {
---font-size-base: 15px;
---font-size-lg: 16px;
---font-size-xl: 20px;
---font-size-xxl: 24px;
---spacing-md: 12px;
---spacing-lg: 20px;
---spacing-xl: 28px;
---spacing-xxl: 40px;
-}
-.container { padding: 0 var(--spacing-md); }
-/* Header */
-.header-top { flex-direction: column; align-items: flex-start; padding: var(--spacing-xs) 0; }
-.header-nav { flex-direction: column; align-items: flex-start; padding: var(--spacing-sm) 0; }
-.nav-menu {
-display: none;
-flex-direction: column;
-width: 100%;
-padding: var(--spacing-md) 0;
-border-top: 1px solid var(--color-border);
-margin-top: var(--spacing-sm);
-}
-.nav-menu.active { display: flex; }
-.nav-link {
-padding: var(--spacing-sm) 0;
-width: 100%;
-justify-content: flex-start;
-}
-.mobile-toggle {
-display: flex;
-position: absolute;
-right: var(--spacing-md);
-top: 50%;
-transform: translateY(-50%);
-z-index: 101;
-}
-.header-info { display: none; }
-.logo { font-size: var(--font-size-lg); }
-/* Hero */
-.hero { padding: var(--spacing-xl) 0; }
-.hero-title { font-size: clamp(1.5rem, 6vw, 2rem); }
-.hero-subtitle { font-size: var(--font-size-base); margin-bottom: var(--spacing-lg); }
-.hero-features { grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm); }
-.feature-item { padding: var(--spacing-sm); text-align: center; }
-.feature-icon { font-size: 1.25rem; }
-.promo-badge { padding: var(--spacing-xs) var(--spacing-md); font-size: var(--font-size-sm); }
-/* Calculator */
-.calculator-grid { grid-template-columns: 1fr; }
-.calculator { padding: var(--spacing-md); }
-.radio-group { flex-direction: column; }
-.radio-option { width: 100%; justify-content: space-between; }
-.calculator-total { flex-direction: column; align-items: flex-start; text-align: left; }
-.total-price { font-size: var(--font-size-lg); }
-.cart-summary { font-size: var(--font-size-sm); }
-/* Cards */
-.cards-grid { grid-template-columns: 1fr; gap: var(--spacing-md); }
-.card { padding: var(--spacing-md); }
-.card-img { max-width: 100px; height: 70px; }
-.card-title { font-size: var(--font-size-base); }
-.card-price { font-size: var(--font-size-lg); }
-.card-actions { flex-direction: column; }
-.card-actions .btn { width: 100%; }
-/* Pricing */
-.pricing-table { font-size: var(--font-size-sm); }
-.pricing-table th, .pricing-table td { padding: var(--spacing-sm); }
-/* Reviews */
-.reviews-grid { grid-template-columns: 1fr; }
-.review-card { padding: var(--spacing-md); }
-/* FAQ */
-.faq-question { font-size: var(--font-size-base); padding: var(--spacing-sm) var(--spacing-md); }
-.faq-answer.open { padding: var(--spacing-sm) var(--spacing-md); }
-/* Contact Form */
-.form-inline { flex-direction: column; }
-.form-inline input, .form-inline .btn { width: 100%; }
-/* Footer */
-.footer-grid { grid-template-columns: 1fr; text-align: center; gap: var(--spacing-md); }
-.footer-column ul { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-xs); }
-.footer-column li { margin: 0; }
-.footer-column h4 { font-size: var(--font-size-base); }
-/* Modal */
-.modal { padding: var(--spacing-lg); margin: var(--spacing-sm); }
-.modal-title { font-size: var(--font-size-base); }
-}
-/* Мобильные малые: 480px */
-@media (max-width: 480px) {
-:root {
---font-size-base: 14px;
---font-size-sm: 13px;
---font-size-lg: 15px;
---font-size-xl: 18px;
---font-size-xxl: 20px;
---spacing-sm: 6px;
---spacing-md: 10px;
---spacing-lg: 16px;
---spacing-xl: 24px;
---spacing-xxl: 32px;
-}
-.btn { padding: 10px 16px; font-size: var(--font-size-sm); }
-.section { padding: var(--spacing-xl) 0; }
-.section-title { font-size: var(--font-size-xl); margin-bottom: var(--spacing-md); }
-.section-subtitle { font-size: var(--font-size-sm); margin-bottom: var(--spacing-lg); }
-.hero-title { font-size: clamp(1.25rem, 7vw, 1.75rem); }
-.hero-features { grid-template-columns: repeat(2, 1fr); }
-.feature-item { padding: var(--spacing-xs); }
-.card-img { max-width: 80px; height: 60px; }
-.card-title { font-size: var(--font-size-base); }
-.card-price { font-size: var(--font-size-lg); }
-.pricing-table { min-width: 400px; font-size: 12px; }
-.pricing-table th, .pricing-table td { padding: 6px 8px; }
-.review-avatar { width: 40px; height: 40px; font-size: var(--font-size-sm); }
-.form-group select, .form-group input { font-size: 16px; /* Prevent zoom on iOS */ }
-.messenger-btn { width: 36px; height: 36px; min-width: 36px; min-height: 36px; font-size: 13px; }
-}
-/* Очень малые экраны: 320px */
-@media (max-width: 360px) {
-.hero-features { grid-template-columns: 1fr; }
-.header-contacts { gap: var(--spacing-sm); }
-.header-phone { font-size: var(--font-size-base); }
-.cart-item { font-size: 12px; }
-}
-/* Landscape mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-.modal { max-height: 100vh; border-radius: 0; }
-.hero { padding: var(--spacing-lg) 0; }
-}
-/* Print */
-@media print {
-.header, .contact-form, .footer, .btn, .mobile-toggle { display: none !important; }
-body { font-size: 12pt; }
-.container { max-width: 100%; padding: 0; }
-}
-/* Accessibility: focus visible */
-@media (prefers-reduced-motion: reduce) {
-*, *::before, *::after {
-animation-duration: 0.01ms !important;
-animation-iteration-count: 1 !important;
-transition-duration: 0.01ms !important;
-}
-}
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-:root {
---color-border: #000;
---color-text-light: #000;
-}
-.btn, .card, .calculator { border: 2px solid currentColor; }
-}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
+    <title>Купить москитные сетки в Астрахани | Окнополис</title>
+    <meta name="description" content="Москитные сетки в Астрахани от 1000 руб/м². Собственное производство, установка за 1 день, гарантия до 3 лет.">
+    
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div id="app">
-<!-- Header -->
-<header class="header">
-<div class="container">
-<div class="header-top">
-<div class="header-contacts">
-<a :href="contact.phoneLink" class="header-phone">{{ contact.phone }}</a>
-<div class="header-messengers">
-<a :href="" class="messenger-btn" title="Max" target="_blank" rel="noopener">Max</a>
-</div>
-</div>
-<button class="btn btn-outline" @click="showCallbackModal = true">📞 Заказать звонок</button>
-</div>
-<nav class="header-nav">
-<a href="#" class="logo">🦟 Окнополис</a>
-<button class="mobile-toggle" @click="menuOpen = !menuOpen" aria-label="Меню" aria-expanded="menuOpen">☰</button>
-<ul class="nav-menu" :class="{ active: menuOpen }">
-<li><a href="#constructions" class="nav-link" @click="menuOpen = false">Типы конструкций</a></li>
-<li><a href="#meshes" class="nav-link" @click="menuOpen = false">Виды полотен</a></li>
-<li><a href="#pricing" class="nav-link" @click="menuOpen = false">Цены</a></li>
-<li><a href="#reviews" class="nav-link" @click="menuOpen = false">Отзывы</a></li>
-<li><a href="#faq" class="nav-link" @click="menuOpen = false">Вопросы</a></li>
-</ul>
-<div class="header-info">
-<span>🕐 {{ contact.schedule }}</span>
-<span>📍 {{ contact.address }}</span>
-</div>
-</nav>
-</div>
-</header>
-<!-- Hero -->
-<section class="hero">
-<div class="container">
-<h1 class="hero-title">Москитные сетки в Астрахани</h1>
-<!-- Группа: акция + кнопка -->
-<div style="display:flex;flex-direction:column;align-items:center;gap:var(--spacing-md);margin:var(--spacing-lg) 0">
-<div class="promo-badge">🎁 {{ promo.title }} <br> <span class="promo-sub">На все москитные сетки с установкой</span></div>
-<button class="btn btn-secondary" @click="scrollToCalculator">🧮 Рассчитать стоимость</button>
-</div>
-<div class="hero-features">
-<div class="feature-item"><div class="feature-icon">🪟</div><div>6 типов конструкций</div></div>
-<div class="feature-item"><div class="feature-icon">🎨</div><div>6 видов полотен</div></div>
-<div class="feature-item"><div class="feature-icon">📐</div><div>Любая форма</div></div>
-<div class="feature-item"><div class="feature-icon">🎯</div><div>Цветные и с рисунком</div></div>
-</div>
-</div>
-</section>
-<!-- Info Bar -->
-<div class="info-bar">
-<div class="container">
-<div class="info-grid">
-<div v-for="(item, i) in conditions" :key="i" class="info-card">
-<span class="info-icon">{{ item.icon }}</span>
-<span>{{ item.text }}</span>
-</div>
-<div class="info-card">
-<span class="info-icon">💳</span>
-<div>
-<strong>Способы оплаты:</strong>
-<div v-for="method in paymentMethods" :key="method">• {{ method }}</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Calculator -->
-<section class="section" id="calculator" ref="calculatorSection">
-<div class="container">
-<h2 class="section-title">🧮 Калькулятор стоимости</h2>
-<p class="section-subtitle">Рассчитайте примерную стоимость москитной сетки по вашим параметрам</p>
-<div class="calculator">
-<div class="calculator-grid">
-<div class="form-group">
-<label for="type">Тип сетки</label>
-<select id="type" v-model="form.type">
-<option v-for="t in config.types" :key="t.name" :value="t.name">
-{{ t.name }} ({{ t.price }} ₽/м²)
-</option>
-</select>
-</div>
-<div class="form-group">
-<label for="color">Цвет рамки</label>
-<select id="color" v-model="form.color">
-<option v-for="c in config.colors" :key="c.value" :value="c.value">
-{{ c.name }} <span v-if="c.priceModifier > 0">(+{{ c.priceModifier }} ₽/м²)</span>
-</option>
-</select>
-</div>
-<div class="form-group">
-<label for="width">Ширина (мм)</label>
-<input type="number" id="width" v-model.number="form.width" min="300" max="2000" inputmode="numeric" />
-</div>
-<div class="form-group">
-<label for="height">Высота (мм)</label>
-<input type="number" id="height" v-model.number="form.height" min="300" max="3000" inputmode="numeric" />
-</div>
-<div class="form-group">
-<label>Количество</label>
-<div style="display:flex;gap:8px;align-items:center">
-<button class="btn btn-outline" @click="form.quantity = Math.max(1, form.quantity - 1)" aria-label="Уменьшить">−</button>
-<input type="number" v-model.number="form.quantity" min="1" style="width:60px;text-align:center" inputmode="numeric" />
-<button class="btn btn-outline" @click="form.quantity++" aria-label="Увеличить">+</button>
-</div>
-</div>
-</div>
-<div class="form-group mb-2">
-<label>Тип полотна</label>
-<div class="radio-group" role="radiogroup">
-<label v-for="m in config.meshes" :key="m.name" class="radio-option" :class="{ active: form.mesh === m.name }">
-<input type="radio" v-model="form.mesh" :value="m.name" :aria-label="m.name" />
-<span>{{ m.name }} <small style="color:var(--color-text-light)">(+{{ m.price }} ₽)</small></span>
-</label>
-</div>
-</div>
-<div class="form-group mb-2">
-<label>Дополнительно</label>
-<div class="radio-group">
-<label v-for="s in config.services" :key="s.name" class="radio-option">
-<input type="checkbox" v-model="form.services" :value="s" />
-<span>{{ s.name }} <small v-if="s.price > 0" style="color:var(--color-text-light)">(+{{ s.price }} ₽)</small></span>
-</label>
-</div>
-</div>
-<div class="calculator-total">
-<span>💰 Примерная стоимость:</span>
-<span class="total-price">{{ calculatedPrice.toLocaleString('ru-RU') }} ₽</span>
-</div>
-<button class="btn" @click="addToCart" :disabled="calculatedPrice <= 0">🛒 Добавить в корзину</button>
-<div class="cart-summary" v-if="cart.length">
-<strong>📦 Корзина ({{ cart.length }}):</strong>
-<div v-for="(item, i) in cart" :key="i" class="cart-item">
-<span>{{ item.name }}</span>
-<span>{{ item.price.toLocaleString('ru-RU') }} ₽</span>
-</div>
-<div class="cart-item" style="font-weight:700;margin-top:8px;border-top:1px solid var(--color-border);padding-top:8px">
-<span>Итого:</span>
-<span>{{ cartTotal.toLocaleString('ru-RU') }} ₽</span>
-</div>
-</div>
-<p class="text-center mt-2" style="font-size:12px;color:var(--color-text-light)">
-⚠️ Стоимость ориентировочная. Точная цена — после замера мастером.
-</p>
-</div>
-</div>
-</section>
-<!-- Constructions -->
-<section class="section" id="constructions" style="background:var(--color-bg-light)">
-<div class="container">
-<h2 class="section-title">Типы конструкций</h2>
-<p class="section-subtitle">Выберите подходящий тип конструкции для ваших окон</p>
-<div class="cards-grid">
-<div v-for="item in constructions" :key="item.id" class="card">
-<img :src="item.img" :alt="item.title" class="card-img" onerror="this.style.display='none';this.nextElementSibling && (this.nextElementSibling.style.display='block')" />
-<div class="card-icon" style="display:none">{{ item.icon }}</div>
-<h3 class="card-title">{{ item.title }}</h3>
-<div class="card-price">{{ item.price }}</div>
-<p class="card-description">{{ item.description }}</p>
-<div class="card-actions">
-<button class="btn btn-outline" @click="scrollToCalculator">🧮 Рассчитать</button>
-<button class="btn" @click="quickOrder(item.title)">📞 Заказать</button>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Mesh Types -->
-<section class="section" id="meshes">
-<div class="container">
-<h2 class="section-title">🕸️ Виды полотен</h2>
-<p class="section-subtitle">Разные виды полотен для решения различных задач</p>
-<div class="cards-grid">
-<div v-for="item in meshTypes" :key="item.id" class="card">
-<img :src="item.img" :alt="item.name" class="card-img" onerror="this.style.display='none';this.nextElementSibling && (this.nextElementSibling.style.display='block')" />
-<div class="card-icon" style="display:none">{{ item.icon }}</div>
-<h3 class="card-title">{{ item.name }}</h3>
-<div class="card-price">{{ item.price }}</div>
-<p class="card-description">{{ item.description }}</p>
-<div class="card-actions">
-<button class="btn btn-outline" @click="scrollToCalculator">🧮 Рассчитать</button>
-<button class="btn" @click="quickOrder(item.name)">📞 Заказать</button>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Pricing -->
-<section class="section" id="pricing" style="background:var(--color-bg-light)">
-<div class="container">
-<h2 class="section-title">💰 Цены</h2>
-<p class="section-subtitle">Примерные цены на основные виды москитных сеток</p>
-<div class="table-wrapper">
-<table class="pricing-table">
-<thead>
-<tr>
-<th>Наименование</th>
-<th>Размер ячейки</th>
-<th>Цена от, руб./м²</th>
-</tr>
-</thead>
-<tbody>
-<tr v-for="(item, i) in pricing" :key="i">
-<td>{{ item.name }}</td>
-<td>{{ item.size }}</td>
-<td>{{ item.price.toLocaleString('ru-RU') }}</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="text-center mt-2" style="color:var(--color-text-light);font-size:var(--font-size-sm)">
-Полный прайс — на странице «Цены». Точная стоимость рассчитывается после замера.
-</p>
-</div>
-</section>
-<!-- Production -->
-<section class="section">
-<div class="container">
-<h2 class="section-title">🏭 Наше производство</h2>
-<p class="section-subtitle">Собственное производство = контроль качества + лучшие цены</p>
-<div class="production-grid">
-<div v-for="(photo, i) in productionPhotos" :key="i" class="production-photo">
-<img :src="photo.src" :alt="photo.alt" loading="lazy" />
-<div class="production-photo-caption">{{ photo.caption }}</div>
-</div>
-</div>
-<div class="text-center mt-3">
-<button class="btn btn-outline">📸 Посмотреть все фото</button>
-</div>
-</div>
-</section>
-<!-- Reviews -->
-<section class="section" id="reviews" style="background:var(--color-bg-light)">
-<div class="container">
-<h2 class="section-title">⭐ Отзывы клиентов</h2>
-<p class="section-subtitle">Что говорят о работе компании «Окнополис»</p>
-<div class="reviews-grid">
-<div v-for="(review, i) in reviews" :key="i" class="review-card">
-<div class="review-header">
-<div class="review-avatar">{{ review.author.charAt(0) }}</div>
-<div>
-<div class="review-author">{{ review.author }}</div>
-<div class="review-source">{{ review.source }}</div>
-</div>
-</div>
-<div class="review-rating">{{ '★'.repeat(review.rating) }}</div>
-<p class="review-text">{{ review.text }}</p>
-</div>
-</div>
-</div>
-</section>
-<!-- FAQ -->
-<section class="section" id="faq">
-<div class="container">
-<h2 class="section-title">❓ Частые вопросы</h2>
-<div style="max-width:800px;margin:0 auto">
-<div v-for="(item, i) in faq" :key="i" class="faq-item">
-<button class="faq-question" :class="{ active: openFaq === i }" @click="toggleFaq(i)" :aria-expanded="openFaq === i">
-<span>{{ item.q }}</span>
-<span class="faq-toggle" :class="{ open: openFaq === i }">+</span>
-</button>
-<div class="faq-answer" :class="{ open: openFaq === i }" :id="'faq-answer-' + i" :aria-hidden="openFaq !== i">
-{{ item.a }}
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Contact Form -->
-<section class="contact-form">
-<div class="container">
-<h2 class="section-title">📞 Нужна консультация?</h2>
-<p class="section-subtitle">Оставьте номер, и мы перезвоним в течение 15 минут</p>
-<form class="form-inline" @submit.prevent="submitCallback">
-<input type="tel" v-model="callbackPhone" placeholder="+7 (___) ___-__-__" required pattern="^[\+]?[78]?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$" inputmode="tel" />
-<button type="submit" class="btn btn-secondary">🔄 Перезвоните мне!</button>
-</form>
-<p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных</p>
-</div>
-</section>
-<!-- Footer -->
-<footer class="footer">
-<div class="container">
-<div class="footer-grid">
-<div class="footer-column">
-<h4>📍 Контакты</h4>
-<ul>
-<li>🏠 {{ contact.address }}</li>
-<li>🕐 {{ contact.schedule }}</li>
-<li>📞 <a :href="contact.phoneLink">{{ contact.phone }}</a></li>
-<li>✉️ <a :href="'mailto:' + contact.email">{{ contact.email }}</a></li>
-</ul>
-</div>
-<div class="footer-column">
-<h4>🧭 Навигация</h4>
-<ul>
-<li><a href="#constructions">Типы конструкций</a></li>
-<li><a href="#meshes">Виды полотен</a></li>
-<li><a href="#pricing">Цены</a></li>
-<li><a href="#reviews">Отзывы</a></li>
-<li><a href="#faq">Вопросы</a></li>
-</ul>
-</div>
-<div class="footer-column">
-<h4>ℹ️ Информация</h4>
-<ul>
-<li><a href="#">О компании</a></li>
-<li><a href="#">Доставка и оплата</a></li>
-<li><a href="#">Гарантия</a></li>
-<li><a href="#">Политика конфиденциальности</a></li>
-</ul>
-</div>
-<div class="footer-column">
-<h4>📱 Мы в соцсетях</h4>
-<div style="display:flex;gap:12px;flex-wrap:wrap">
-<a :href="social.whatsapp" class="messenger-btn" style="width:40px;height:40px;font-size:18px" target="_blank" rel="noopener">Max</a>
-</div>
-</div>
-</div>
-<div class="footer-bottom">
-© 2026 Компания «Окнополис». Все права защищены. Не является публичной офертой.
-</div>
-</div>
-</footer>
-<!-- Callback Modal -->
-<transition name="modal">
-<div class="modal-overlay" v-if="showCallbackModal" @click.self="showCallbackModal = false" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-<div class="modal">
-<div class="modal-header">
-<h3 class="modal-title" id="modal-title">📞 Заказать звонок</h3>
-<button class="modal-close" @click="showCallbackModal = false" aria-label="Закрыть">×</button>
-</div>
-<form class="modal-form" @submit.prevent="submitModalCallback">
-<div class="form-group">
-<label for="modal-phone">Ваш телефон *</label>
-<input type="tel" id="modal-phone" v-model="modalPhone" placeholder="+7 (___) ___-__-__" required pattern="^[\+]?[78]?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$" inputmode="tel" />
-</div>
-<div class="form-group">
-<label for="modal-comment">Комментарий</label>
-<textarea id="modal-comment" v-model="modalComment" placeholder="Какая сетка вас интересует?"></textarea>
-</div>
-<button type="submit" class="btn">✅ Отправить заявку</button>
-<p class="form-note" style="margin-top:12px;font-size:12px">Отправляя форму, вы соглашаетесь с политикой конфиденциальности</p>
-</form>
-</div>
-</div>
-</transition>
-</div>
-<script>
-const { createApp, ref, computed, onMounted, nextTick } = Vue;
-const app = createApp({
-setup() {
-const contact = ref({
-phone: '+7 (962) 753 77-03',
-phoneLink: 'tel:+79627537703',
-address: 'Астрахань, Безжонова, 99Б',
-schedule: 'Пн — Пт 09:00–17:00 Суббота 09:00–15:00',
-email: 'Oknopolis30@yandex.ru'
-});
-const promo = ref({
-title: 'Летняя акция! Скидка 20%',
-subtitle: 'Закажите москитную сетку сегодня — получите скидку на установку!'
-});
-const conditions = ref([
-{ icon: '🚗', text: 'Выезд мастера по Астрахани — 600 ₽' },
-{ icon: '📋', text: 'При договоре вызов бесплатный' },
-{ icon: '💰', text: 'Минимальная сумма заказа — 1500 ₽' }
-]);
-const paymentMethods = ref(['Наличные', 'Банковские карты', 'Перевод']);
-const config = ref({
-types: [
-{ name: 'Рамочная Standart', price: 1000 },
-{ name: 'Вставная Standart', price: 1200 },
-{ name: 'Москитная дверь 42/17', price: 2500 },
-{ name: 'Москитная дверь 25/17', price: 2300 },
-{ name: 'Плиссе c40', price: 4000 },
-{ name: 'Плиссе c20', price: 3800 }
-],
-colors: [
-{ name: 'Белый RAL 9016', value: 'white', priceModifier: 0 },
-{ name: 'Коричневый RAL 8017', value: 'brown', priceModifier: 150 },
-{ name: 'Антрацит RAL 7016', value: 'anthracite', priceModifier: 150 },
-{ name: 'RAL (на выбор)', value: 'custom', priceModifier: 400 }
-],
-meshes: [
-{ name: 'Стандарт', price: 210, desc: 'Базовая защита от насекомых' },
-{ name: 'Антимошка', price: 1000, desc: 'Мелкая ячейка от мошки' },
-{ name: 'Антикошка', price: 2000, desc: 'Усиленное полотно для питомцев' },
-{ name: 'Антипыльца', price: 1000, desc: 'Для аллергиков' },
-{ name: 'Респилон', price: 4000, desc: 'Премиум защита' },
-{ name: 'Ультравью', price: 400, desc: 'Тонкие нити, невидимая' }
-],
-services: [
-{ name: 'Самовывоз', price: 0 },
-{ name: 'Доставка', price: 300 },
-{ name: 'Замер', price: 600 },
-{ name: 'Монтаж', price: 600 }
-]
-});
-const constructions = ref([
-{ id:1, title:'Рамочные', price:'от 1000 руб/м²', description:'Самый распространенный тип. Состоят из рамки, специального профиля и полотна.', img:'images/7.png', icon:'🪟' },
-{ id:2, title:'Вставные', price:'2500 руб/м²', description:'Не требуют установки крепежа в раму окна — оно остаётся без лишних отверстий.', img:'images/8.png', icon:'🔲' },
-{ id:3, title:'Роллетные', price:'4500 руб/м²', description:'Сворачиваются в ролик сверху проёма — не нужно искать место для хранения.', img:'images/9.png', icon:'🌀' },
-{ id:4, title:'Раздвижные', price:'от 2300 руб/м²', description:'Из специального профиля для установки в рельсы-направляющие.', img:'images/10.png', icon:'↔️' },
-{ id:5, title:'Плиссе', price:'от 4000 руб/м²', description:'Тип «гармошки». Занимает мало места и не требует хранения.', img:'images/11.png', icon:'📚' },
-{ id:6, title:'Дверные', price:'от 2000 руб/м²', description:'Распашные, устанавливаются на петли в дверной проём.', img:'images/12.png', icon:'🚪' }
-]);
-const meshTypes = ref([
-{ id:1, name:'Стандарт', price:'от 1000 ₽/м²', description:'Стандартное москитное полотно. Отлично защищает от насекомых.', img:'images/1.png', icon:'🛡️' },
-{ id:2, name:'Ультравью', price:'от 3000 ₽/м²', description:'Особо тонкие нити практически не заметны и не закрывают обзор.', img:'images/2.png', icon:'👁️' },
-{ id:3, name:'Антикошка', price:'2500 ₽/м²', description:'Прочный вид полотна, выдерживает когти питомцев.', img:'images/3.png', icon:'🐱' },
-{ id:4, name:'Антипыль', price:'2000 ₽/м²', description:'Размер ячейки не позволяет пробраться даже маленьким мошкам и пыли.', img:'images/4.png', icon:'🌫️' },
-{ id:5, name:'Антипыльца', price:'3000 ₽/м²', description:'Структура полотна задерживает пыль и пыльцу от растений.', img:'images/5.png', icon:'🌸' },
-{ id:6, name:'Защитное', price:'индивидуально', description:'Самая технологичная сетка. Способна задерживать вредные выбросы.', img:'images/6.png', icon:'⚡' }
-]);
-const pricing = ref([
-{ name:'Рамочная стандарт', size:'1,0×1,2 мм', price:1000 },
-{ name:'Рамочная на плунжерах', size:'1,0×1,2 мм', price:2500 },
-{ name:'Балконная сетка Provedal', size:'1,0×1,2 мм', price:2300 },
-{ name:'Рулонная на окно', size:'1,0×1,2 мм', price:3150 },
-{ name:'Рулонная на дверь', size:'1,0×1,2 мм', price:3570 },
-{ name:'Плиссе ("гармошка")', size:'1,0×1,2 мм', price:4000 },
-{ name:'Распашная москитная дверь', size:'профиль 47×17', price:3570 }
-]);
-const productionPhotos = ref([
-{ src: 'images/13.png', alt: '', caption: '' },
-{ src: 'images/14.png', alt: '', caption: '' },
-{ src: 'images/15.png', alt: '', caption: '' },
-{ src: 'images/16.png', alt: '', caption: '' },
-{ src: 'images/17.png', alt: '', caption: '' },
-{ src: 'images/18.png', alt: '', caption: '' },
-{ src: 'images/19.png', alt: '', caption: '' },
-{ src: 'images/20.png', alt: '', caption: '' },
-{ src: 'images/21.png', alt: '', caption: '' },
-{ src: 'images/22.png', alt: '', caption: '' },
-{ src: 'images/23.png', alt: '', caption: '' },
-{ src: 'images/24.png', alt: '', caption: '' }
-]);
-const reviews = ref([
-{ author:'Мария С.', source:'Google Карты', text:'Долго искали установщика плиссе-сеток с собственным производством. У Окнополис действительно есть своё производство и оно на высоком уровне!', rating:5 },
-{ author:'Ольга С.', source:'Яндекс Карты', text:'Заказывала москитные сетки на окно и балкон. К замеру подошли ответственно, установку сделали на следующий день. Рекомендую!', rating:5 },
-{ author:'Катерина Н.', source:'2ГИС', text:'Отличная и быстрая работа! Позвонила заказать сетку «антикошка». Замер в тот же день, на следующий — уже всё установлено.', rating:5 }
-]);
-const faq = ref([
-{ q:'Занимаетесь ли Вы ремонтом москитных сеток?', a:'Да, мы можем: заменить полотно, ручки, соединительные уголки или крепления. Минимальный выезд на ремонт от 3 сеток – 2000 руб.' },
-{ q:'Какую гарантию Вы предоставляете?', a:'В зависимости от изделия гарантия составляет от 1 до 3 лет.' },
-{ q:'Почему у вас недорого?', a:'Собственное производство, скидки, индивидуальная ценовая политика и долгосрочное сотрудничество с поставщиками.' }
-]);
-const social = ref({
-whatsapp: 'https://wa.me/79627537703',
-});
-const menuOpen = ref(false);
-const showCallbackModal = ref(false);
-const openFaq = ref(null);
-const calculatorSection = ref(null);
-const form = ref({
-type: config.value.types[0].name,
-color: 'white',
-width: 1000,
-height: 1500,
-quantity: 1,
-mesh: config.value.meshes[0].name,
-services: []
-});
-const cart = ref([]);
-const callbackPhone = ref('');
-const modalPhone = ref('');
-const modalComment = ref('');
-const calculatedPrice = computed(() => {
-if (!form.value.width || !form.value.height) return 0;
-const area = (form.value.width * form.value.height) / 1000000;
-// Цена типа сетки
-const type = config.value.types.find(t => t.name === form.value.type);
-const typePrice = type ? type.price : 1000;
-// Модификатор цвета
-const color = config.value.colors.find(c => c.value === form.value.color);
-const colorModifier = color ? color.priceModifier : 0;
-// Цена полотна
-const mesh = config.value.meshes.find(m => m.name === form.value.mesh);
-const meshPrice = mesh ? mesh.price : 0;
-// Услуги
-const servicesPrice = form.value.services.reduce((sum, s) => sum + s.price, 0);
-return Math.round((typePrice + colorModifier + meshPrice) * area * form.value.quantity + servicesPrice);
-});
-const cartTotal = computed(() => cart.value.reduce((sum, item) => sum + item.price, 0));
-const scrollToCalculator = async () => {
-menuOpen.value = false;
-await nextTick();
-calculatorSection.value?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
-const toggleFaq = (index) => {
-openFaq.value = openFaq.value === index ? null : index;
-};
-const addToCart = () => {
-if (calculatedPrice.value <= 0) return;
-const item = {
-name: `${form.value.type} — ${form.value.mesh}`,
-price: calculatedPrice.value,
-params: { ...form.value }
-};
-cart.value.push(item);
-const btn = event?.target;
-if (btn) {
-btn.textContent = '✅ Добавлено!';
-setTimeout(() => btn.textContent = '🛒 Добавить в корзину', 1500);
-}
-};
-const quickOrder = (itemName) => {
-modalComment.value = `Интересует: ${itemName}`;
-showCallbackModal.value = true;
-};
-const submitCallback = () => {
-if (!callbackPhone.value) return;
-alert(`✅ Спасибо! Мы перезвоним на ${callbackPhone.value} в ближайшее время.`);
-callbackPhone.value = '';
-};
-const submitModalCallback = () => {
-if (!modalPhone.value) return;
-alert(`✅ Заявка принята!
-📱 Телефон: ${modalPhone.value}
-💬 Комментарий: ${modalComment.value || '—'}`);
-modalPhone.value = '';
-modalComment.value = '';
-showCallbackModal.value = false;
-};
-onMounted(() => {
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function(e) {
-const href = this.getAttribute('href');
-if (href.length > 1) {
-e.preventDefault();
-const target = document.querySelector(href);
-if (target) {
-target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-}
-});
-});
-document.addEventListener('click', (e) => {
-if (menuOpen.value && !e.target.closest('.header-nav')) {
-menuOpen.value = false;
-}
-});
-});
-return {
-contact, promo, conditions, paymentMethods, config,
-constructions, meshTypes, pricing, productionPhotos, reviews, faq, social,
-menuOpen, showCallbackModal, openFaq, calculatorSection,
-form, cart, callbackPhone, modalPhone, modalComment,
-calculatedPrice, cartTotal,
-scrollToCalculator, toggleFaq, addToCart, quickOrder,
-submitCallback, submitModalCallback
-};
-}
-});
-app.mount('#app');
-</script>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-top">
+                    <div class="header-contacts">
+                        <a :href="contact.phoneLink" class="header-phone">{{ contact.phone }}</a>
+                        <div class="header-messengers">
+                            <a :href="social.whatsapp" class="messenger-btn" title="WhatsApp" target="_blank" rel="noopener">WA</a>
+                            <a :href="social.telegram" class="messenger-btn telegram" title="Telegram" target="_blank" rel="noopener">TG</a>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline" @click="showCallbackModal = true">📞 Заказать звонок</button>
+                </div>
+                <nav class="header-nav">
+                    <a href="#" class="logo">🦟 Окнополис</a>
+                    <button class="mobile-toggle" @click="menuOpen = !menuOpen" aria-label="Меню" aria-expanded="menuOpen">☰</button>
+                    <ul class="nav-menu" :class="{ active: menuOpen }">
+                        <li><a href="#constructions" class="nav-link" @click="menuOpen = false">Типы конструкций</a></li>
+                        <li><a href="#meshes" class="nav-link" @click="menuOpen = false">Виды полотен</a></li>
+                        <li><a href="#pricing" class="nav-link" @click="menuOpen = false">Цены</a></li>
+                        <li><a href="#reviews" class="nav-link" @click="menuOpen = false">Отзывы</a></li>
+                        <li><a href="#faq" class="nav-link" @click="menuOpen = false">Вопросы</a></li>
+                    </ul>
+                    <div class="header-info">
+                        <span>🕐 {{ contact.schedule }}</span>
+                        <span>📍 {{ contact.address }}</span>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Москитные сетки в Астрахани</h1>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:var(--spacing-md);margin:var(--spacing-lg) 0">
+                    <div class="promo-badge">🎁 {{ promo.title }} <br> <span class="promo-sub">На все москитные сетки с установкой</span></div>
+                    <button class="btn btn-secondary" @click="scrollToCalculator">🧮 Рассчитать стоимость</button>
+                </div>
+                <div class="hero-features">
+                    <div class="feature-item"><div class="feature-icon">🪟</div><div>6 типов конструкций</div></div>
+                    <div class="feature-item"><div class="feature-icon">🎨</div><div>6 видов полотен</div></div>
+                    <div class="feature-item"><div class="feature-icon">📐</div><div>Любая форма</div></div>
+                    <div class="feature-item"><div class="feature-icon">🎯</div><div>Цветные и с рисунком</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Bar -->
+        <div class="info-bar">
+            <div class="container">
+                <div class="info-grid">
+                    <div v-for="(item, i) in conditions" :key="i" class="info-card">
+                        <span class="info-icon">{{ item.icon }}</span>
+                        <span>{{ item.text }}</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">💳</span>
+                        <div>
+                            <strong>Способы оплаты:</strong>
+                            <div v-for="method in paymentMethods" :key="method">• {{ method }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculator -->
+        <section class="section" id="calculator" ref="calculatorSection">
+            <div class="container">
+                <h2 class="section-title">🧮 Калькулятор стоимости</h2>
+                <p class="section-subtitle">Рассчитайте примерную стоимость москитной сетки по вашим параметрам</p>
+                <div class="calculator">
+                    <div class="calculator-grid">
+                        <div class="form-group">
+                            <label for="type">Тип сетки</label>
+                            <select id="type" v-model="form.type">
+                                <option v-for="t in config.types" :key="t.name" :value="t.name">
+                                    {{ t.name }} ({{ t.price }} ₽/м²)
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="color">Цвет рамки</label>
+                            <select id="color" v-model="form.color">
+                                <option v-for="c in config.colors" :key="c.value" :value="c.value">
+                                    {{ c.name }} <span v-if="c.priceModifier > 0">(+{{ c.priceModifier }} ₽/м²)</span>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="width">Ширина (мм)</label>
+                            <input type="number" id="width" v-model.number="form.width" min="300" max="2000" inputmode="numeric" />
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Высота (мм)</label>
+                            <input type="number" id="height" v-model.number="form.height" min="300" max="3000" inputmode="numeric" />
+                        </div>
+                        <div class="form-group">
+                            <label>Количество</label>
+                            <div style="display:flex;gap:8px;align-items:center">
+                                <button class="btn btn-outline" @click="form.quantity = Math.max(1, form.quantity - 1)" aria-label="Уменьшить">−</button>
+                                <input type="number" v-model.number="form.quantity" min="1" style="width:60px;text-align:center" inputmode="numeric" />
+                                <button class="btn btn-outline" @click="form.quantity++" aria-label="Увеличить">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Тип полотна</label>
+                        <div class="radio-group" role="radiogroup">
+                            <label v-for="m in config.meshes" :key="m.name" class="radio-option" :class="{ active: form.mesh === m.name }">
+                                <input type="radio" v-model="form.mesh" :value="m.name" :aria-label="m.name" />
+                                <span>{{ m.name }} <small style="color:var(--color-text-light)">(+{{ m.price }} ₽)</small></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Дополнительно</label>
+                        <div class="radio-group">
+                            <label v-for="s in config.services" :key="s.name" class="radio-option">
+                                <input type="checkbox" v-model="form.services" :value="s" />
+                                <span>{{ s.name }} <small v-if="s.price > 0" style="color:var(--color-text-light)">(+{{ s.price }} ₽)</small></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="calculator-total">
+                        <span>💰 Примерная стоимость:</span>
+                        <span class="total-price">{{ calculatedPrice.toLocaleString('ru-RU') }} ₽</span>
+                    </div>
+                    <button class="btn" @click="addToCart" :disabled="calculatedPrice <= 0">🛒 Добавить в корзину</button>
+                    <div class="cart-summary" v-if="cart.length">
+                        <strong>📦 Корзина ({{ cart.length }}):</strong>
+                        <div v-for="(item, i) in cart" :key="i" class="cart-item">
+                            <span>{{ item.name }}</span>
+                            <span>{{ item.price.toLocaleString('ru-RU') }} ₽</span>
+                        </div>
+                        <div class="cart-item" style="font-weight:700;margin-top:8px;border-top:1px solid var(--color-border);padding-top:8px">
+                            <span>Итого:</span>
+                            <span>{{ cartTotal.toLocaleString('ru-RU') }} ₽</span>
+                        </div>
+                    </div>
+                    <p class="text-center mt-2" style="font-size:12px;color:var(--color-text-light)">
+                        ⚠️ Стоимость ориентировочная. Точная цена — после замера мастером.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Constructions -->
+        <section class="section" id="constructions" style="background:var(--color-bg-light)">
+            <div class="container">
+                <h2 class="section-title">Типы конструкций</h2>
+                <p class="section-subtitle">Выберите подходящий тип конструкции для ваших окон</p>
+                <div class="cards-grid">
+                    <div v-for="item in constructions" :key="item.id" class="card">
+                        <img :src="item.img" :alt="item.title" class="card-img" onerror="this.style.display='none';this.nextElementSibling && (this.nextElementSibling.style.display='block')" />
+                        <div class="card-icon" style="display:none">{{ item.icon }}</div>
+                        <h3 class="card-title">{{ item.title }}</h3>
+                        <div class="card-price">{{ item.price }}</div>
+                        <p class="card-description">{{ item.description }}</p>
+                        <div class="card-actions">
+                            <button class="btn btn-outline" @click="scrollToCalculator">🧮 Рассчитать</button>
+                            <button class="btn" @click="quickOrder(item.title)">📞 Заказать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mesh Types -->
+        <section class="section" id="meshes">
+            <div class="container">
+                <h2 class="section-title">🕸️ Виды полотен</h2>
+                <p class="section-subtitle">Разные виды полотен для решения различных задач</p>
+                <div class="cards-grid">
+                    <div v-for="item in meshTypes" :key="item.id" class="card">
+                        <img :src="item.img" :alt="item.name" class="card-img" onerror="this.style.display='none';this.nextElementSibling && (this.nextElementSibling.style.display='block')" />
+                        <div class="card-icon" style="display:none">{{ item.icon }}</div>
+                        <h3 class="card-title">{{ item.name }}</h3>
+                        <div class="card-price">{{ item.price }}</div>
+                        <p class="card-description">{{ item.description }}</p>
+                        <div class="card-actions">
+                            <button class="btn btn-outline" @click="scrollToCalculator">🧮 Рассчитать</button>
+                            <button class="btn" @click="quickOrder(item.name)">📞 Заказать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section" id="pricing" style="background:var(--color-bg-light)">
+            <div class="container">
+                <h2 class="section-title">💰 Цены</h2>
+                <p class="section-subtitle">Примерные цены на основные виды москитных сеток</p>
+                <div class="table-wrapper">
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Наименование</th>
+                                <th>Размер ячейки</th>
+                                <th>Цена от, руб./м²</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, i) in pricing" :key="i">
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.size }}</td>
+                                <td>{{ item.price.toLocaleString('ru-RU') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-center mt-2" style="color:var(--color-text-light);font-size:var(--font-size-sm)">
+                    Полный прайс — на странице «Цены». Точная стоимость рассчитывается после замера.
+                </p>
+            </div>
+        </section>
+
+        <!-- Production -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">🏭 Наше производство</h2>
+                <p class="section-subtitle">Собственное производство = контроль качества + лучшие цены</p>
+                <div class="production-grid">
+                    <div v-for="(photo, i) in productionPhotos" :key="i" class="production-photo">
+                        <img :src="photo.src" :alt="photo.alt" loading="lazy" />
+                        <div class="production-photo-caption">{{ photo.caption }}</div>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <button class="btn btn-outline">📸 Посмотреть все фото</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section class="section" id="reviews" style="background:var(--color-bg-light)">
+            <div class="container">
+                <h2 class="section-title">⭐ Отзывы клиентов</h2>
+                <p class="section-subtitle">Что говорят о работе компании «Окнополис»</p>
+                <div class="reviews-grid">
+                    <div v-for="(review, i) in reviews" :key="i" class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">{{ review.author.charAt(0) }}</div>
+                            <div>
+                                <div class="review-author">{{ review.author }}</div>
+                                <div class="review-source">{{ review.source }}</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">{{ '★'.repeat(review.rating) }}</div>
+                        <p class="review-text">{{ review.text }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+            <div class="container">
+                <h2 class="section-title">❓ Частые вопросы</h2>
+                <div style="max-width:800px;margin:0 auto">
+                    <div v-for="(item, i) in faq" :key="i" class="faq-item">
+                        <button class="faq-question" :class="{ active: openFaq === i }" @click="toggleFaq(i)" :aria-expanded="openFaq === i">
+                            <span>{{ item.q }}</span>
+                            <span class="faq-toggle" :class="{ open: openFaq === i }">+</span>
+                        </button>
+                        <div class="faq-answer" :class="{ open: openFaq === i }" :id="'faq-answer-' + i" :aria-hidden="openFaq !== i">
+                            {{ item.a }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="contact-form">
+            <div class="container">
+                <h2 class="section-title">📞 Нужна консультация?</h2>
+                <p class="section-subtitle">Оставьте номер, и мы перезвоним в течение 15 минут</p>
+                <form class="form-inline" @submit.prevent="submitCallback">
+                    <input type="tel" v-model="callbackPhone" placeholder="+7 (___) ___-__-__" required pattern="^[\+]?[78]?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$" inputmode="tel" />
+                    <button type="submit" class="btn btn-secondary" :disabled="isSubmitting">🔄 Перезвоните мне!</button>
+                </form>
+                <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h4>📍 Контакты</h4>
+                        <ul>
+                            <li>🏠 {{ contact.address }}</li>
+                            <li>🕐 {{ contact.schedule }}</li>
+                            <li>📞 <a :href="contact.phoneLink">{{ contact.phone }}</a></li>
+                            <li>✉️ <a :href="'mailto:' + contact.email">{{ contact.email }}</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>🧭 Навигация</h4>
+                        <ul>
+                            <li><a href="#constructions">Типы конструкций</a></li>
+                            <li><a href="#meshes">Виды полотен</a></li>
+                            <li><a href="#pricing">Цены</a></li>
+                            <li><a href="#reviews">Отзывы</a></li>
+                            <li><a href="#faq">Вопросы</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>ℹ️ Информация</h4>
+                        <ul>
+                            <li><a href="#">О компании</a></li>
+                            <li><a href="#">Доставка и оплата</a></li>
+                            <li><a href="#">Гарантия</a></li>
+                            <li><a href="#">Политика конфиденциальности</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>📱 Мы в соцсетях</h4>
+                        <div style="display:flex;gap:12px;flex-wrap:wrap">
+                            <a :href="social.whatsapp" class="messenger-btn" style="width:40px;height:40px;font-size:18px" target="_blank" rel="noopener">WA</a>
+                            <a :href="social.telegram" class="messenger-btn telegram" style="width:40px;height:40px;font-size:18px" target="_blank" rel="noopener">TG</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    © 2026 Компания «Окнополис». Все права защищены. Не является публичной офертой.
+                </div>
+            </div>
+        </footer>
+
+        <!-- Callback Modal -->
+        <transition name="modal">
+            <div class="modal-overlay" v-if="showCallbackModal" @click.self="showCallbackModal = false" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modal-title">📞 Заказать звонок</h3>
+                        <button class="modal-close" @click="showCallbackModal = false" aria-label="Закрыть">×</button>
+                    </div>
+                    <form class="modal-form" @submit.prevent="submitModalCallback">
+                        <div class="form-group">
+                            <label for="modal-phone">Ваш телефон *</label>
+                            <input type="tel" id="modal-phone" v-model="modalPhone" placeholder="+7 (___) ___-__-__" required pattern="^[\+]?[78]?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$" inputmode="tel" />
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-comment">Комментарий</label>
+                            <textarea id="modal-comment" v-model="modalComment" placeholder="Какая сетка вас интересует?"></textarea>
+                        </div>
+                        <button type="submit" class="btn" :disabled="isSubmitting">✅ Отправить заявку</button>
+                        <p class="form-note" style="margin-top:12px;font-size:12px">Отправляя форму, вы соглашаетесь с политикой конфиденциальности</p>
+                    </form>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <!-- App JavaScript -->
+    <script src="js/app.js"></script>
 </body>
 </html>
