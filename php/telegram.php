@@ -1,7 +1,7 @@
 <?php
 // Настройки Telegram бота
-$telegram_bot_token = "8674518890:AAFtK2wloFgdRyzCvB57r7u-57JwZVJGlxU"; // Ваш токен от @BotFather
-$telegram_chat_id = "1474112548"; // Ваш chat_id от @userinfobot
+$telegram_bot_token = ""; // Ваш токен от @BotFather
+$telegram_chat_id = ""; // Ваш chat_id от @userinfobot
 
 // Обработка AJAX запросов
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
