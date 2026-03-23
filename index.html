@@ -176,6 +176,14 @@ body { font-family: var(--font-family); font-size: var(--font-size-base); color:
 .mb-3 { margin-bottom: var(--spacing-lg); }
 .hidden { display: none !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* ========== Production Photos ========= */
+.production-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); }
+.production-photo { aspect-ratio: 4/3; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: var(--box-shadow); transition: var(--transition); position: relative; }
+.production-photo:hover { transform: translateY(-4px); box-shadow: var(--box-shadow-hover); }
+.production-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.production-photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: var(--spacing-sm); font-size: var(--font-size-sm); font-weight: 500; }
+
 /* ========== АДАПТИВ ========= */
 /* Планшеты */
 @media (max-width: 1024px) {
@@ -557,9 +565,10 @@ transition-duration: 0.01ms !important;
 <div class="container">
 <h2 class="section-title">🏭 Наше производство</h2>
 <p class="section-subtitle">Собственное производство = контроль качества + лучшие цены</p>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--spacing-md)">
-<div v-for="i in 6" :key="i" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:var(--border-radius-lg);display:flex;align-items:center;justify-content:center;color:var(--color-primary);font-weight:500">
-📷 Фото цеха {{ i }}
+<div class="production-grid">
+<div v-for="(photo, i) in productionPhotos" :key="i" class="production-photo">
+<img :src="photo.src" :alt="photo.alt" loading="lazy" />
+<div class="production-photo-caption">{{ photo.caption }}</div>
 </div>
 </div>
 <div class="text-center mt-3">
@@ -760,6 +769,20 @@ const pricing = ref([
 { name:'Плиссе ("гармошка")', size:'1,0×1,2 мм', price:4000 },
 { name:'Распашная москитная дверь', size:'профиль 47×17', price:3570 }
 ]);
+const productionPhotos = ref([
+{ src: 'images/13.png', alt: '', caption: '' },
+{ src: 'images/14.png', alt: '', caption: '' },
+{ src: 'images/15.png', alt: '', caption: '' },
+{ src: 'images/16.png', alt: '', caption: '' },
+{ src: 'images/17.png', alt: '', caption: '' },
+{ src: 'images/18.png', alt: '', caption: '' },
+{ src: 'images/19.png', alt: '', caption: '' },
+{ src: 'images/20.png', alt: '', caption: '' },
+{ src: 'images/21.png', alt: '', caption: '' },
+{ src: 'images/22.png', alt: '', caption: '' },
+{ src: 'images/23.png', alt: '', caption: '' },
+{ src: 'images/24.png', alt: '', caption: '' }
+]);
 const reviews = ref([
 { author:'Мария С.', source:'Google Карты', text:'Долго искали установщика плиссе-сеток с собственным производством. У Окнополис действительно есть своё производство и оно на высоком уровне!', rating:5 },
 { author:'Ольга С.', source:'Яндекс Карты', text:'Заказывала москитные сетки на окно и балкон. К замеру подошли ответственно, установку сделали на следующий день. Рекомендую!', rating:5 },
@@ -793,22 +816,17 @@ const modalComment = ref('');
 const calculatedPrice = computed(() => {
 if (!form.value.width || !form.value.height) return 0;
 const area = (form.value.width * form.value.height) / 1000000;
-
 // Цена типа сетки
 const type = config.value.types.find(t => t.name === form.value.type);
 const typePrice = type ? type.price : 1000;
-
 // Модификатор цвета
 const color = config.value.colors.find(c => c.value === form.value.color);
 const colorModifier = color ? color.priceModifier : 0;
-
 // Цена полотна
 const mesh = config.value.meshes.find(m => m.name === form.value.mesh);
 const meshPrice = mesh ? mesh.price : 0;
-
 // Услуги
 const servicesPrice = form.value.services.reduce((sum, s) => sum + s.price, 0);
-
 return Math.round((typePrice + colorModifier + meshPrice) * area * form.value.quantity + servicesPrice);
 });
 const cartTotal = computed(() => cart.value.reduce((sum, item) => sum + item.price, 0));
@@ -873,7 +891,7 @@ menuOpen.value = false;
 });
 return {
 contact, promo, conditions, paymentMethods, config,
-constructions, meshTypes, pricing, reviews, faq, social,
+constructions, meshTypes, pricing, productionPhotos, reviews, faq, social,
 menuOpen, showCallbackModal, openFaq, calculatorSection,
 form, cart, callbackPhone, modalPhone, modalComment,
 calculatedPrice, cartTotal,
